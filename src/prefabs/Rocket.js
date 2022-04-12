@@ -3,6 +3,7 @@ constructor(scene,x,y,texture,frame){
     super(scene,x,y,texture,frame);
     scene.add.existing(this);
     this.isFiring = false;
+    this.sfxRocket = scene.sound.add('sfx_rocket');
     this.moveSpeed = 2;
 }
 update(){
@@ -15,6 +16,7 @@ if(!this.isFiring){
 }
 
 if( Phaser.Input.Keyboard.JustDown(keyF)){
+    this.sfxRocket.play();
     this.isFiring = true;
 }
 
@@ -27,5 +29,12 @@ if (this.y <= borderUISize * 3 + borderPadding){
 }
 
 }
+
+reset(){
+  this.isFiring = false;
+  this.y = game.config.height - borderUISize - borderPadding;
+
+}
+
 
 }
